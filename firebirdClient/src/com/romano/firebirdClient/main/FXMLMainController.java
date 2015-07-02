@@ -36,10 +36,10 @@ public class FXMLMainController implements Initializable {
     private Button btnConnect;           
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        ConnectServer conServer = new ConnectServer();
+    private void handleButtonAction(ActionEvent event) {        
         ConnectServer.setPort(Integer.parseInt(txtPort.getText()));
         ConnectServer.setServerName(txtServerName.getText());        
+        ConnectServer conServer = new ConnectServer();
         try{
             Object ob = "Hello Server!!";
             ob = conServer.accept(ob);

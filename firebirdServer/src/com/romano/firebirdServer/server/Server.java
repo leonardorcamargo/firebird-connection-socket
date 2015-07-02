@@ -1,34 +1,39 @@
 package com.romano.firebirdServer.server;
 
-import com.romano.firebirdServer.common.Message;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.Scanner;
-import javafx.scene.control.Alert;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author leonardo
  */
-public class Server {
+public class Server extends Thread {
     
     private static ServerSocket server;	 
     
     public Server(int port){                
-
-        try{
+        super("Server");
+        try {
             // Instancia o ServerSocket ouvindo a porta 12345
-            server = new ServerSocket(port);                        
-            
-            while (true) {
+            server = new ServerSocket(port);
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public void run(){
+        while (! this.isInterrupted()) {
+            try {
                 System.out.println("Waiting connection of clients...");
                 // o método accept() bloqueia a execução até que o servidor receba um pedido de conexão
                 new MultiServerThread(server.accept()).start();
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException e) {
-            Message.show(Alert.AlertType.ERROR,"Could not listen on port " + port);
-            System.exit(-1);
-        }  
+        }
     }
     
 }

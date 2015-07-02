@@ -39,6 +39,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnConnect;
     
+    Server server = null;
+    
     @FXML
     private void handleBtnConnectAction(ActionEvent event) {
         Conexao.setPATH_DATABASE(txtDataBase.getText());
@@ -56,8 +58,9 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleBtnHearingAction(ActionEvent event) {
-        Conexao.setPORT(Integer.parseInt(txtPort.getText()));
-        Server server = new Server(Conexao.getPORT());
+        Conexao.setPORT(Integer.parseInt(txtPort.getText()));        
+        server = new Server(Conexao.getPORT());
+        server.start();
     }
     
     @Override
