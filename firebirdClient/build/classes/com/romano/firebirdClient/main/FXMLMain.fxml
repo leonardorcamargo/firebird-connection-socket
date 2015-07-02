@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.romano.firebirdClient.main.FXMLMainController">
+    <children>
+        <Button fx:id="btnConnect" layoutX="268.0" layoutY="88.0" onAction="#handleButtonAction" text="Connect">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Label layoutX="21.0" layoutY="30.0" text="Server Name/IP">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="94.0" text="Server Port">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtServerName" layoutX="156.0" layoutY="24.0" prefHeight="39.0" prefWidth="202.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtPort" layoutX="156.0" layoutY="88.0" prefHeight="39.0" prefWidth="90.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbMessage" alignment="CENTER" layoutX="20.0" layoutY="150.0" prefHeight="27.0" prefWidth="341.0" textFill="#238624">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
