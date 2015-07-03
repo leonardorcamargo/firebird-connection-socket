@@ -6,8 +6,9 @@
 package com.romano.firebirdClient.main;
 
 import com.romano.firebirdClient.client.ConnectServer;
-import com.romano.firebirdClient.common.Message;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +34,10 @@ public class FXMLMainController implements Initializable {
     private TextField txtServerName;
     
     @FXML
-    private Button btnConnect;           
+    private Button btnConnect;  
+    
+    @FXML
+    private Button btnReturnUsers;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {        
@@ -44,6 +48,29 @@ public class FXMLMainController implements Initializable {
             Object ob = "Hello Server!!";
             ob = conServer.accept(ob);
             System.out.println(ob);
+            lbMessage.setText("Connection successfully");
+        }catch(Exception e){
+            lbMessage.setText("Connection failed");
+        }
+    }
+    
+    @FXML
+    private void handleBtnReturnUsers(ActionEvent event){
+        ConnectServer conServer = new ConnectServer();
+        try{
+            Object ob = "SELECT USU_USUARIO, USU_SENHA FROM USUARIO";
+            ob = conServer.accept(ob);
+            ArrayList rs = (ArrayList)ob;
+            String users = "";
+            
+            for (Object r : rs) {
+                users += "Usuário:" + ((ArrayList)r).get(0) + " Senha:" + ((ArrayList)r).get(1)+"\n";
+            }
+                
+            
+        
+            Message.show(Alert.AlertType.INFORMATION, users);
+            
             lbMessage.setText("Connection successfully");
         }catch(Exception e){
             lbMessage.setText("Connection failed");

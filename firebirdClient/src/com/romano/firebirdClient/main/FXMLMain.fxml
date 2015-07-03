@@ -36,5 +36,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnReturnUsers" layoutX="14.0" layoutY="185.0" onAction="#handleBtnReturnUsers" text="Return All Users">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

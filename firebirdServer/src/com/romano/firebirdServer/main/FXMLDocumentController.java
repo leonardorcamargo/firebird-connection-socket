@@ -5,11 +5,15 @@
  */
 package com.romano.firebirdServer.main;
 
-import com.romano.firebirdServer.common.Message;
 import com.romano.firebirdServer.dao.Conexao;
 import com.romano.firebirdServer.server.Server;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +43,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnConnect;
     
+    @FXML
+    private Button btnReturnUsers;
+    
     Server server = null;
     
     @FXML
@@ -61,6 +68,33 @@ public class FXMLDocumentController implements Initializable {
         Conexao.setPORT(Integer.parseInt(txtPort.getText()));        
         server = new Server(Conexao.getPORT());
         server.start();
+    }
+    
+    @FXML
+    private void handleBtnReturnUsersAction(ActionEvent event){
+        Conexao con = new Conexao();
+        try{            
+            Statement st = con.getConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT USU_USUARIO, USU_SENHA FROM USUARIO");
+            String users = null;
+            
+            while(rs.next()){
+              users += "Usuário:" + rs.getString("USU_USUARIO") + " Senha:" + rs.getString("USU_SENHA")+"\n";
+            }  
+        
+            Message.show(Alert.AlertType.INFORMATION, users);
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.getConnection().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+            
+        
     }
     
     @Override

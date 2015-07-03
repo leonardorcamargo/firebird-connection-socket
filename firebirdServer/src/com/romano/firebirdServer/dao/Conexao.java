@@ -5,7 +5,7 @@
  */
 package com.romano.firebirdServer.dao;
 
-import com.romano.firebirdServer.common.Message;
+import com.romano.firebirdServer.main.Message;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

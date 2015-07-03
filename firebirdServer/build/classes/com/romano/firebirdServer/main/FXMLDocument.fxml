@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.romano.firebirdServer.main.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="309.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.romano.firebirdServer.main.FXMLDocumentController">
     <children>
         <Button fx:id="btnHearing" layoutX="434.0" layoutY="33.0" onAction="#handleBtnHearingAction" prefHeight="25.0" prefWidth="90.0" text="Hearing">
          <font>
@@ -36,5 +36,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btnReturnUsers" layoutX="39.0" layoutY="206.0" onAction="#handleBtnReturnUsersAction" prefHeight="39.0" prefWidth="166.0" text="Return all Users">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

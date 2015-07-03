@@ -1,12 +1,12 @@
 package com.romano.firebirdServer.server;
 
-import com.romano.firebirdServer.common.Message;
-import com.romano.firebirdServer.common.Type;
+import com.romano.firebirdServer.main.FXMLDocumentController;
+import com.romano.firebirdServer.model.ClientToServer;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import javafx.scene.control.Alert;
-import sun.security.pkcs11.wrapper.Functions;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MultiServerThread extends Thread {
     private Socket client = null;    
@@ -20,24 +20,22 @@ public class MultiServerThread extends Thread {
     public void run() {
 
     	try{
-            System.out.print("Client connected: " + client.getInetAddress().getHostAddress());
+            //System.out.print("Client connected: " + client.getInetAddress().getHostAddress());
 
             ObjectInputStream input = new ObjectInputStream(client.getInputStream());       
-            Object inputObject = input.readObject();
+            ClientToServer inputObject = (ClientToServer)input.readObject();
             
-            System.out.print(inputObject);            
-            
-            Object outputObject = new Object();
-            
-            outputObject = "Hello Client!";                                              
+            MethodVerify mv = new MethodVerify(inputObject);
+                                    
+            Object outputObject = mv.getReturn();
                         
             ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());    
             output.flush();
             output.writeObject(outputObject);        
 
             client.close();
-	}catch(Exception e) {        
-            System.out.println("Erro: " + e.getMessage());     
+	}catch(Exception ex) {        
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex); 
         }
     	
     }
