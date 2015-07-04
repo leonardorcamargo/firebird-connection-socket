@@ -27,6 +27,7 @@ public class FirebirdServer extends Application {
         Scene scene = new Scene(root);
         
         STAGE.setScene(scene);
+        STAGE.setTitle("Server Socket");
         STAGE.show();
     }
 

@@ -96,22 +96,28 @@ public class Conexao {
     }    
     private Connection con = null;    
     
-    public Conexao(){
-        try{                     
+    public Conexao() throws SQLException{       
+        try {
             Class.forName("org.firebirdsql.jdbc.FBDriver");
-                       
-            con = DriverManager.getConnection("jdbc:firebirdsql:"+PATH_DATABASE,USER,PASSWORD);            
-        } catch (SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-            Message.show(Alert.AlertType.ERROR, "Connection error!");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-            Message.show(Alert.AlertType.ERROR, "Connection error!");
         }
+        con = DriverManager.getConnection("jdbc:firebirdsql:"+PATH_DATABASE,USER,PASSWORD);                    
     }
     
     public Connection getConnection(){
         return con;
+    }
+    
+    public void closeConnection(){
+        try {
+            if (con != null){
+                con.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }
    
     

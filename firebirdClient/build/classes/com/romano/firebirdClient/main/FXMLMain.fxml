@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.romano.firebirdClient.main.FXMLMainController">
+<AnchorPane id="AnchorPane" prefHeight="142.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.romano.firebirdClient.main.FXMLMainController">
     <children>
         <Button fx:id="btnConnect" layoutX="268.0" layoutY="88.0" onAction="#handleButtonAction" text="Connect">
          <font>
@@ -21,12 +21,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtServerName" layoutX="156.0" layoutY="24.0" prefHeight="39.0" prefWidth="202.0">
+      <TextField fx:id="txtServerName" layoutX="156.0" layoutY="24.0" prefHeight="39.0" prefWidth="202.0" text="localhost">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtPort" layoutX="156.0" layoutY="88.0" prefHeight="39.0" prefWidth="90.0">
+      <TextField fx:id="txtPort" layoutX="156.0" layoutY="88.0" prefHeight="39.0" prefWidth="90.0" text="5454">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,10 +36,5 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnReturnUsers" layoutX="14.0" layoutY="185.0" onAction="#handleBtnReturnUsers" text="Return All Users">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
     </children>
 </AnchorPane>

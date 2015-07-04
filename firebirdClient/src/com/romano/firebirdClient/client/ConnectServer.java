@@ -5,6 +5,8 @@
  */
 package com.romano.firebirdClient.client;
 
+import com.romano.firebirdModel.model.ClientToServer;
+import com.romano.firebirdModel.model.ServerToClient;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -32,7 +34,7 @@ public class ConnectServer {
         }
     }
     
-    public Object accept(Object object) throws Exception{
+    public ServerToClient accept(ClientToServer object) throws Exception{
         if ((PORT == 0)||(SERVER_NAME == "")){
             throw new Exception("Values PORT/SERVER_NAME not found");
         }
@@ -42,7 +44,7 @@ public class ConnectServer {
             output.writeObject(object);
             
             input = new ObjectInputStream(server.getInputStream());
-            return input.readObject();
+            return (ServerToClient)input.readObject();
             
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(ConnectServer.class.getName()).log(Level.SEVERE, null, ex);

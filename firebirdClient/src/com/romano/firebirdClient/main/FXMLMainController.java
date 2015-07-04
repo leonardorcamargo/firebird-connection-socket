@@ -6,14 +6,14 @@
 package com.romano.firebirdClient.main;
 
 import com.romano.firebirdClient.client.ConnectServer;
+import com.romano.firebirdModel.common.Type;
+import com.romano.firebirdModel.model.ClientToServer;
+import com.romano.firebirdModel.model.ServerToClient;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -34,10 +34,7 @@ public class FXMLMainController implements Initializable {
     private TextField txtServerName;
     
     @FXML
-    private Button btnConnect;  
-    
-    @FXML
-    private Button btnReturnUsers;
+    private Button btnConnect;     
     
     @FXML
     private void handleButtonAction(ActionEvent event) {        
@@ -45,35 +42,18 @@ public class FXMLMainController implements Initializable {
         ConnectServer.setServerName(txtServerName.getText());        
         ConnectServer conServer = new ConnectServer();
         try{
-            Object ob = "Hello Server!!";
-            ob = conServer.accept(ob);
-            System.out.println(ob);
-            lbMessage.setText("Connection successfully");
-        }catch(Exception e){
-            lbMessage.setText("Connection failed");
-        }
-    }
-    
-    @FXML
-    private void handleBtnReturnUsers(ActionEvent event){
-        ConnectServer conServer = new ConnectServer();
-        try{
-            Object ob = "SELECT USU_USUARIO, USU_SENHA FROM USUARIO";
-            ob = conServer.accept(ob);
-            ArrayList rs = (ArrayList)ob;
-            String users = "";
+            ClientToServer cts = new ClientToServer();
+            cts.setKey("LEONARDO|ROMANO");
+            cts.setTypeMethod(Type.TypeMethod.GET_USER);
             
-            for (Object r : rs) {
-                users += "Usuário:" + ((ArrayList)r).get(0) + " Senha:" + ((ArrayList)r).get(1)+"\n";
+            ServerToClient stc = conServer.accept(cts);              
+            if (stc.getTypeReturn().equals(Type.TypeReturn.OK)){
+                lbMessage.setText("Connection successfully");
+            }else{
+                lbMessage.setText("Connection failed");
             }
-                
-            
-        
-            Message.show(Alert.AlertType.INFORMATION, users);
-            
-            lbMessage.setText("Connection successfully");
         }catch(Exception e){
-            lbMessage.setText("Connection failed");
+            lbMessage.setText("Connection failed\n"+e.getMessage());
         }
     }
     

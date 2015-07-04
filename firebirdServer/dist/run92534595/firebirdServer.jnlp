@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="firebirdServer.jnlp">
+  <information>
+    <title>firebirdServer</title>
+    <vendor>Leonardo Camargo</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="firebirdServer.jar" size="13859" download="eager" />
+    <jar href="lib/firebirdModel.jar" size="11935" download="eager" />
+    <jar href="lib/jaybird-full-2.2.8.jar" size="905566" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="firebirdServer" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="com.romano.firebirdServer.main.FirebirdServer"  name="firebirdServer" />
+  <update check="always"/>
+</jnlp>

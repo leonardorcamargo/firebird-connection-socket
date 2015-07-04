@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="firebirdServer.jar" size="13287" download="eager" />
+    <jar href="firebirdServer.jar" size="13888" download="eager" />
+    <jar href="lib/firebirdModel.jar" size="11935" download="eager" />
     <jar href="lib/jaybird-full-2.2.8.jar" size="905566" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="firebirdServer" >

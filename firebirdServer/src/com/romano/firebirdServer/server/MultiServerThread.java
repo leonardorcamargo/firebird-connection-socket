@@ -1,7 +1,8 @@
 package com.romano.firebirdServer.server;
 
+import com.romano.firebirdModel.model.ClientToServer;
+import com.romano.firebirdModel.model.ServerToClient;
 import com.romano.firebirdServer.main.FXMLDocumentController;
-import com.romano.firebirdServer.model.ClientToServer;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -27,7 +28,7 @@ public class MultiServerThread extends Thread {
             
             MethodVerify mv = new MethodVerify(inputObject);
                                     
-            Object outputObject = mv.getReturn();
+            ServerToClient outputObject = mv.getReturn();
                         
             ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());    
             output.flush();
